@@ -2,12 +2,14 @@ import json
 from PIL import Image, ImageDraw
 
 climbs = json.load(open("../data/raw/all_climbs.json"))["climbs"]
+len(climbs)
 
 def find_name(climbs, name):
     return [climb for climb in climbs if climb["name"] == name][0]
 
 name_climb = "proj braj"
 proj_braj = find_name(climbs, name_climb)
+proj_braj
 
 # --- Constants ---
 CLIMB_IMAGE_SRC = '../data/raw/kilter_12_12.png'
@@ -20,11 +22,10 @@ holds = proj_braj["holds"]
 
 COLORS = {
     1: "green",   # start
-    2: "blue",  # hand
-    3: "orange",    # foot
+    2: "blue",    # hand
+    3: "orange",  # foot
     4: "purple"   # finish 
 }
-# const COLORS = ["transparent", "green", "blue", "orange", "purple"]
 
 COLOR_MAP = {
     "blue": (0, 0, 255),
@@ -41,8 +42,8 @@ draw = ImageDraw.Draw(image)
 
 for key, value in holds.items():
     hold_id = int(key)
-    # if hold_id not in HOLD_ID:
-    #     continue
+    if hold_id not in HOLD_ID:
+        continue
     index = HOLD_ID.index(hold_id)
     x, y = HOLDCOORDINATES[index]
     # Get color
